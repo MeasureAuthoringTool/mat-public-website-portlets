@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+#parse ($init)
+
+<html class="#language("lang.dir")" dir="#language("lang.dir")" lang="$w3c_language_id">
+
+<head>
+	<title>$the_title</title>
+
+	$theme.include($top_head_include)
+</head>
+
+<body class="$css_class">
+
+$theme.include($body_top_include)
+
+#if ($is_signed_in)
+	#dockbar()
+#end
+
+<div id="wrapper" style="width: 1010px;">
+	<a href="#main-content" id="skip-to-content">#language("skip-to-content")</a>
+
+	<header id="banner" role="banner">
+		<div id="heading" >
+			<ul style="list-style:none;margin:0;padding-left:12px;padding-top:12px;">
+				<li style="display: inline-block;margin-left:0;">
+					<a class="$logo_css_class" href="http://www.cms.gov/" title="#language("go-to") CMS">
+						<img alt="CMS Logo"  src="/MAT-Theme-theme/images/cms_logo_transp_1.png" />
+					</a>
+				</li>
+				<li style="display:inline-block;padding-left:90px;">
+					<span style="color:#00519C;font-size:35px;font-weight:bold">Measure Authoring Tool</span>
+				</li>
+			</ul>	
+		</div>
+
+		#if (!$is_signed_in && (1 == 0))
+			<a href="$sign_in_url" id="sign-in" rel="nofollow">$sign_in_text</a>
+		#end
+
+		#if ($has_navigation || $is_signed_in)
+			#parse ("$full_templates_path/navigation.vm")
+		#end
+	</header>
+
+	<div id="content">
+		#if ($selectable)
+			$theme.include($content_include)
+		#else
+			$portletDisplay.recycle()
+
+			$portletDisplay.setTitle($the_title)
+
+			$theme.wrapPortlet("portlet.vm", $content_include)
+		#end
+	</div>
+
+	<footer id="footer1" role="contentinfo">
+		<div id="custom_footer">
+			<div class="custom-ft-content">
+				<div class="cms-address-bar">
+					<div id="footer-cms-logo-wrapper" align="left">
+						<div id="footer_cms_logo">
+							<a id="footer_cms_logo_link" title="CMS home page" href="http://www.cms.gov/" target="_blank">
+								<img id="footer-address-img" alt="CMS.gov" src="/MAT-Theme-theme/images/cms.gov-footer.png">
+							</a>
+						</div>
+					</div>
+					<div id="footer-address-text">
+						A federal government website managed by the Centers for Medicare &amp; Medicaid Services <br> 7500 Security Boulevard, Baltimore, MD 21244
+					</div>
+					<div id="footer-hhs-logo-wrapper" align="right">
+						<div id="footer_hhs_logo">
+							<a id="footer_hhs_logo_link" title="Health and Human Services home page" href="http://www.hhs.gov/" target="_blank">
+								<img alt="Department of Health and Human Services USA" src="/MAT-Theme-theme/images/hhslogo.png">
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="custom-footer-nav">
+					<div>
+						<div class="content">
+							<h2>Helpful Links</h2>
+							<ul style="list-style: none;">
+								<li style="display: inline-block">
+									<a title="Accessibility Policy" target="_blank" href="/web/guest/accessibility-statement">
+										Accessibility Policy
+									<span class="customLinkDisclaimer"> - Opens in a new window</span>
+									</a>
+								</li>
+								<li style="display: inline-block"><b> | </b></li>
+								<li style="display: inline-block">
+									<a title="Privacy Policy" target="_blank" href="http://www.cms.gov/About-CMS/Agency-Information/Aboutwebsite/Privacy-Policy.html">
+										Privacy Policy
+									<span class="customLinkDisclaimer"> - Opens in a new window</span>
+									</a>
+								</li>
+								<li style="display: inline-block"><b> | </b></li>
+								<li style="display: inline-block">
+									<a title="Terms Of Use" target="_blank" href="/web/guest/terms-of-use">
+										Terms Of Use
+									<span class="customLinkDisclaimer"> - Opens in a new window</span>
+									</a>
+								</li>
+								<li style="display: inline-block"><b> | </b></li>
+								<li style="display: inline-block">
+									<a title="Freedom of Information Act" target="_blank" href="http://www.cms.gov/center/freedom-of-information-act-center.html">
+										Freedom of Information Act 
+									<span class="customLinkDisclaimer"> - Opens in a new window</span>
+									</a>
+								</li>
+								<li style="display: inline-block"><b> | </b></li>
+								<li style="display: inline-block">
+									<a title="User Guide" target="_blank" href="/documents/10179/13108/MAT+User+Guide/c50cc2fb-01ee-4b97-9cd1-2e33feca8763">
+										User Guide
+									<span class="customLinkDisclaimer"> - Opens in a new window</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>	
+	</footer>
+</div>
+
+$theme.include($body_bottom_include)
+
+</body>
+
+$theme.include($bottom_include)
+
+</html>
